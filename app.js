@@ -20,6 +20,9 @@ app.use((err, req, res, next) => {
     }else if(err.name === "Email/password is invalid" || err.name === "Email/password is required"){
         code = 400
         message = err.name
+    }else if(err.name === "Object not found"){
+        code = 404
+        message = err.name
     }
 
     res.status(code).json({message})
