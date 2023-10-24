@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const axios = require('axios')
 
 class Controller {
   static async register(req, res, next) {
@@ -40,6 +41,14 @@ class Controller {
       res.status(200).json({ access_token });
     } catch (error) {
       next(error);
+    }
+  }
+  static async home(req, res, next){
+    try {
+        const {data} = await axios.get("https://www.freetogame.com/api/games")
+        res.status(200).json(data)
+    } catch (error) {
+        next(error)
     }
   }
 }
