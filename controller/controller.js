@@ -43,14 +43,6 @@ class Controller {
       next(error);
     }
   }
-  static async home(req, res, next){
-    try {
-        const {data} = await axios.get("https://www.freetogame.com/api/games")
-        res.status(200).json(data)
-    } catch (error) {
-        next(error)
-    }
-  }
 }
 
 module.exports = Controller;
