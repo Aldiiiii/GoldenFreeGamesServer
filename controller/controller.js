@@ -52,6 +52,7 @@ class Controller {
         next(error)
     }
   }
+  
 }
 
 module.exports = Controller;
