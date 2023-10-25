@@ -47,10 +47,21 @@ class Controller {
   }
   static async home(req, res, next){
     try {
+        const { page } = req.query
+        let reqPage = 1        
+        if(page){
+          reqPage = page
+        }
+
         const {data} = await axios.get("https://www.freetogame.com/api/games")
-        res.status(200).json(data)
+        
+        const perPage = 10
+        function getCurrentPageItems(num){
+          return data.slice((num - 1) * perPage, perPage * num)
+        }
+
+        res.status(200).json(getCurrentPageItems(reqPage))
     } catch (error) {
-        console.log(error)
         next(error)
     }
   }
