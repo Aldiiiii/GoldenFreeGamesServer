@@ -55,12 +55,12 @@ class Controller {
 
         const {data} = await axios.get("https://www.freetogame.com/api/games")
         
-        const perPage = 10
+        const perPage = 12
         function getCurrentPageItems(num){
           return data.slice((num - 1) * perPage, perPage * num)
         }
 
-        res.status(200).json(getCurrentPageItems(reqPage))
+        res.status(200).json({data: getCurrentPageItems(reqPage), totalPage: Math.ceil(data.length/perPage), currentPage: reqPage})
     } catch (error) {
         next(error)
     }
