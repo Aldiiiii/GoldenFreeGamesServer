@@ -29,6 +29,9 @@ app.use((err, req, res, next) => {
   } else if (err.name === "Invalid token") {
     code = 401;
     message = err.name;
+  } else if (err.name === "Data not found") {
+    code = 404
+    message = err.name
   }
 
   res.status(code).json({ message });

@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     GamesId: DataTypes.INTEGER,
     title: DataTypes.STRING,
-    thumbnai: DataTypes.STRING,
+    thumbnail: DataTypes.STRING,
     short_description: DataTypes.STRING,
     game_url: DataTypes.STRING,
     genre: DataTypes.STRING,
@@ -34,7 +34,8 @@ module.exports = (sequelize, DataTypes) => {
     publisher: DataTypes.STRING,
     developer: DataTypes.STRING,
     release_date: DataTypes.DATE,
-    freetogame_profile_url: DataTypes.STRING
+    freetogame_profile_url: DataTypes.STRING,
+    status: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Collection',

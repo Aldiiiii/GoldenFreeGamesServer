@@ -10,5 +10,9 @@ router.post('/login-google', Controller.loginGoogle)
 router.use(authentication)
 
 router.get('/', Controller.home)
+router.post('/collections', Controller.addCollections)
+router.get('/collections', Controller.collections)
+router.patch('/collections', Controller.changeStatus)
+router.get('/collections/:id', Controller.gamesById)
 
 module.exports = router
