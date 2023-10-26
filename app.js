@@ -1,6 +1,10 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const cors = require("cors");
 const router = require("./routes");
 
@@ -30,8 +34,8 @@ app.use((err, req, res, next) => {
     code = 401;
     message = err.name;
   } else if (err.name === "Data not found") {
-    code = 404
-    message = err.name
+    code = 404;
+    message = err.name;
   }
 
   res.status(code).json({ message });

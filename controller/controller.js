@@ -39,7 +39,7 @@ class Controller {
         id: getLogin.id,
         email: getLogin.email,
       };
-      const access_token = jwt.sign(payload, "SECRET");
+      const access_token = jwt.sign(payload, process.env.SECRET);
       res.status(200).json({ access_token });
     } catch (error) {
       next(error);
@@ -73,8 +73,7 @@ class Controller {
     try {
       const ticket = await client.verifyIdToken({
         idToken: req.headers.google_token,
-        audience:
-          "809525062533-kc419u49oejm7b3g8m0p2u9q332tdh5m.apps.googleusercontent.com",
+        audience: process.env.G_CLIENT,
       });
       const payload = ticket.getPayload();
       const [user, created] = await User.findOrCreate({
@@ -87,7 +86,7 @@ class Controller {
         hooks: false,
       });
 
-      let access_token = jwt.sign({ id: user.id, email: user.email }, "SECRET");
+      let access_token = jwt.sign({ id: user.id, email: user.email }, process.env.SECRET);
       res.status(200).json({ access_token });
     } catch (err) {
       console.log(err);
